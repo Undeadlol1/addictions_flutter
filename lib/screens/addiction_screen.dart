@@ -12,9 +12,7 @@ class AddictionScreen extends StatelessWidget {
     final AddictionScreenArguments args =
         ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Addictions'),
-      ),
+      appBar: AppBar(title: Text('${args.addictionId}')),
       body: ListView(
         children: <Widget>[
           ListTile(leading: Icon(Icons.mood_bad), title: Text('Consequences')),
