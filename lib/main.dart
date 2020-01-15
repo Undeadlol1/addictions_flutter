@@ -1,3 +1,4 @@
+import 'package:addictions_flutter/screens/addiction_screen.dart';
 import 'package:addictions_flutter/screens/addictions_list_screen.dart';
 import 'package:addictions_flutter/screens/create_addiction_screen.dart';
 import 'package:addictions_flutter/screens/triggers_list_screen.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => AddictionsListScreen(),
         '/triggers': (context) => TriggesListScreen(),
         '/crate-addiction': (context) => CreateAddictionScreen(),
+        AddictionScreen.routeName: (context) => AddictionScreen(),
       },
       theme: ThemeData(
         primarySwatch: Colors.amber,
