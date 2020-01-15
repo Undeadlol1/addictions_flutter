@@ -41,15 +41,6 @@ class AppDrawer extends StatelessWidget {
               // Navigator.pop(context);
             },
           ),
-          ListTile(
-            title: Text('Item 2'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              // Navigator.pop(context);
-            },
-          ),
         ],
       ),
     );
