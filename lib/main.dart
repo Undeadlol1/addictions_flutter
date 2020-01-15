@@ -3,12 +3,16 @@ import 'package:addictions_flutter/screens/addictions_list_screen.dart';
 import 'package:addictions_flutter/screens/create_addiction_screen.dart';
 import 'package:addictions_flutter/screens/triggers_list_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  // final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    print(_auth.currentUser());
     return MaterialApp(
       title: 'Addictions app',
       initialRoute: '/',
