@@ -17,12 +17,14 @@ class AddictionScreen extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
+          ListTile(leading: Icon(Icons.mood_bad), title: Text('Consequences')),
           ListTile(title: Text('Fat')),
           ListTile(title: Text('Pimbles')),
           Divider(),
-          ListTile(title: Text('Triggers')),
-          ListTile(title: Text('Consequences')),
-          ListTile(title: Text('Alternatives')),
+          ListTile(leading: Icon(Icons.warning), title: Text('Triggers')),
+          ListTile(title: Text('Tea')),
+          Divider(),
+          ListTile(leading: Icon(Icons.mood), title: Text('Alternatives')),
         ],
       ),
     );
