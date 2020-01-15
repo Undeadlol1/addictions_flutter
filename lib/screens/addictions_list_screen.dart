@@ -32,12 +32,23 @@ class AddictionsList extends StatelessWidget {
       children: <Widget>[
         GestureDetector(
           onTap: () => Navigator.pushNamed(context, AddictionScreen.routeName,
-              arguments: AddictionScreenArguments(addictionId: 'sugar')),
+              arguments: AddictionScreenArguments(addictionId: 'Sugar')),
           child: ListTile(
             title: Text('Sugar'),
-            leading: CircleAvatar(child: Image.asset('assets/sugar.jpg')),
+            leading: Icon(Icons.cake),
+            // NOTE: delete sugar.jpg if next comment line is removed
+            // leading: CircleAvatar(child: Image.asset('assets/sugar.jpg')),
           ),
-        )
+        ),
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(context, AddictionScreen.routeName,
+              arguments: AddictionScreenArguments(
+                  addictionId: 'Avoidance and Escapism')),
+          child: ListTile(
+            title: Text('Avoidance and Escapism'),
+            leading: Icon(Icons.directions),
+          ),
+        ),
       ],
     );
   }

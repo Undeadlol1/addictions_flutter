@@ -1,4 +1,3 @@
-import 'package:addictions_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class TriggesListScreen extends StatelessWidget {
