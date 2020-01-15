@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => AddictionsListScreen(),
         '/triggers': (context) => TriggesListScreen(),
-        '/crate-addiction': (context) => CreateAddictionScreen(),
+        CreateAddictionScreen.routeName: (context) => CreateAddictionScreen(),
         AddictionScreen.routeName: (context) => AddictionScreen(),
       },
       theme: ThemeData(

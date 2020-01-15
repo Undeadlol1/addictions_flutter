@@ -1,4 +1,5 @@
 import 'package:addictions_flutter/screens/addiction_screen.dart';
+import 'package:addictions_flutter/screens/create_addiction_screen.dart';
 import 'package:addictions_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +15,9 @@ class AddictionsListScreen extends StatelessWidget {
       drawer: AppDrawer(),
       body: AddictionsList(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, '/crate-addiction'),
         child: Icon(Icons.add),
+        onPressed: () =>
+            Navigator.pushNamed(context, CreateAddictionScreen.routeName),
       ),
     );
   }
@@ -33,11 +35,7 @@ class AddictionsList extends StatelessWidget {
               arguments: AddictionScreenArguments(addictionId: 'sugar')),
           child: ListTile(
             title: Text('Sugar'),
-            // leading: Image.asset('assets/sugar.jpg'),
-            leading: CircleAvatar(
-                child: Image.asset(
-              'assets/sugar.jpg',
-            )),
+            leading: CircleAvatar(child: Image.asset('assets/sugar.jpg')),
           ),
         )
       ],

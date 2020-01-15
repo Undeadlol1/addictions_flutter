@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CreateAddictionScreen extends StatelessWidget {
+  static const routeName = '/create-addiction';
+
   const CreateAddictionScreen({Key key}) : super(key: key);
 
   @override
