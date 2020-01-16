@@ -49,6 +49,15 @@ class AddictionsList extends StatelessWidget {
             leading: Icon(Icons.directions),
           ),
         ),
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(context, AddictionScreen.routeName,
+              arguments:
+                  AddictionScreenArguments(addictionId: 'Useless Information')),
+          child: ListTile(
+            title: Text('Useless Information'),
+            leading: Icon(Icons.not_interested),
+          ),
+        ),
       ],
     );
   }
