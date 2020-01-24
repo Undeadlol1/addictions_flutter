@@ -49,10 +49,6 @@ class AddictionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _auth
-        .currentUser()
-        .then((user) => print(user))
-        .catchError((error) => print('error $error'));
     return ListView(
       children: <Widget>[
         GestureDetector(

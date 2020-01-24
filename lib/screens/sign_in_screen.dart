@@ -22,7 +22,6 @@ class SignInScreen extends StatelessWidget {
 
     final FirebaseUser user =
         (await _auth.signInWithCredential(credential)).user;
-    print("signed in " + user.displayName);
     return user;
   }
 
@@ -35,7 +34,7 @@ class SignInScreen extends StatelessWidget {
         height: 50,
         child: SignInButton(Buttons.Google,
             onPressed: () => _handleSignIn()
-                .then((FirebaseUser user) => print(user))
+                // .then((FirebaseUser user) => print(user))
                 .catchError((e) => print(e))),
       )),
       floatingActionButton: FloatingActionButton(
