@@ -1,3 +1,4 @@
+import 'package:addictions_flutter/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -21,6 +22,10 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: Text('Triggers'),
             onTap: () => Navigator.pushNamed(context, '/triggers'),
+          ),
+          ListTile(
+            title: Text('Sign In'),
+            onTap: () => Navigator.pushNamed(context, SignInScreen.routeName),
           ),
         ],
       ),
