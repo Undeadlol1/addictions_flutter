@@ -18,11 +18,16 @@ class AppDrawer extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: <Widget>[
                 DrawerHeader(
-                  child: CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: NetworkImage(user?.photoUrl),
-                    backgroundColor: Colors.transparent,
-                  ),
+                  child: Container(
+                      width: 100.0,
+                      height: 100.0,
+                      decoration: user?.photoUrl == null
+                          ? null
+                          : BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  fit: BoxFit.fitWidth,
+                                  image: NetworkImage(user?.photoUrl)))),
                   decoration:
                       BoxDecoration(color: Theme.of(context).accentColor),
                 ),
@@ -35,10 +40,13 @@ class AppDrawer extends StatelessWidget {
                   onTap: () => Navigator.pushNamed(context, '/triggers'),
                 ),
                 ListTile(
-                  title: Text('Sign In'),
-                  onTap: () =>
-                      Navigator.pushNamed(context, SignInScreen.routeName),
-                ),
+                    title: Text(snapshot.hasData ? 'Sign Out' : 'Sign In'),
+                    onTap: () {
+                      if (snapshot.hasData)
+                        _auth.signOut();
+                      else
+                        Navigator.pushNamed(context, SignInScreen.routeName);
+                    }),
               ],
             ),
           );
