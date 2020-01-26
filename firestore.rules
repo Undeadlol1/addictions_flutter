@@ -5,7 +5,7 @@ service cloud.firestore {
   }
   match /databases/{database}/documents {
     match /addictions/{addiction} {
-      allow read, update, delete: if isAuthenticated() && request.auth.uid == resource.data.userId;
+      allow list, read, update, delete: if isAuthenticated() && request.auth.uid == resource.data.userId;
       allow create: if isAuthenticated();
     }
     // match /profiles/{userId} {
