@@ -8,8 +8,8 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: _auth.currentUser(),
+    return StreamBuilder(
+        stream: _auth.onAuthStateChanged,
         builder: (context, snapshot) {
           final FirebaseUser user = snapshot.data;
           return Drawer(
