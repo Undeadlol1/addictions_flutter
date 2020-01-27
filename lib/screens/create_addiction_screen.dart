@@ -38,55 +38,57 @@ class CreateAddictionFormState extends State<CreateAddictionForm> {
     return StreamBuilder(
         stream: _auth.onAuthStateChanged,
         builder: (context, snapshot) {
-          return Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TextFormField(
-                  controller: nameController,
-                  decoration: InputDecoration(labelText: 'Addiction Name'),
-                  validator: (value) {
-                    if (value.trim().isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
+          return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    TextFormField(
+                      controller: nameController,
+                      decoration: InputDecoration(labelText: 'Addiction Name'),
+                      validator: (value) {
+                        if (value.trim().isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: Center(
+                          child: RaisedButton(
+                        onPressed: () {
+                          if (!snapshot.hasData) {
+                            Scaffold.of(context).showSnackBar(
+                                SnackBar(content: Text('Please login')));
+                            return;
+                          }
+                          if (_formKey.currentState.validate()) {
+                            final Map<String, dynamic> payload = {
+                              'name': nameController.text,
+                              'userId': (snapshot.data as FirebaseUser).uid
+                            };
+                            print('$payload');
+                            Firestore.instance
+                                .collection('addictions')
+                                // TODO manually add an id
+                                .add(payload)
+                                .then((document) {
+                              Navigator.pushNamed(
+                                  context, AddictionScreen.routeName,
+                                  arguments: AddictionScreenArguments(
+                                      addictionName: nameController.text));
+                            });
+                          }
+                        },
+                        child: Text('Submit'),
+                      )),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Center(
-                      child: RaisedButton(
-                    onPressed: () {
-                      if (!snapshot.hasData) {
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text('Please login')));
-                        return;
-                      }
-                      if (_formKey.currentState.validate()) {
-                        final Map<String, dynamic> payload = {
-                          'name': nameController.text,
-                          'userId': (snapshot.data as FirebaseUser).uid
-                        };
-                        print('$payload');
-                        Firestore.instance
-                            .collection('addictions')
-                            // TODO manually add an id
-                            .add(payload)
-                            .then((document) {
-                          Navigator.pushNamed(
-                              context, AddictionScreen.routeName,
-                              arguments: AddictionScreenArguments(
-                                  addictionName: nameController.text));
-                        });
-                      }
-                    },
-                    child: Text('Submit'),
-                  )),
-                ),
-              ],
-            ),
-          );
+              ));
         });
   }
 }
