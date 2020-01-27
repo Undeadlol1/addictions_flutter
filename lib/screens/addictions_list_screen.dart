@@ -44,58 +44,26 @@ class AddictionsList extends StatelessWidget {
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError)
                 return new Text('Error: ${snapshot.error}');
-              switch (snapshot.connectionState) {
-                case ConnectionState.waiting:
-                  return Center(child: CircularProgressIndicator());
-                default:
-                  return ListView(
-                    children: <Widget>[
-                      ...snapshot.data.documents
-                          .map((DocumentSnapshot document) {
-                        return GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AddictionScreen.routeName,
-                                arguments: AddictionScreenArguments(
-                                    addictionId: document['name'])),
-                            child: ListTile(
-                              title: new Text(document['name']),
-                            ));
-                      }).toList(),
-                      GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, AddictionScreen.routeName,
-                            arguments:
-                                AddictionScreenArguments(addictionId: 'Sugar')),
+              if (snapshot.connectionState == ConnectionState.waiting)
+                return Center(child: CircularProgressIndicator());
+              if (!snapshot.hasData)
+                return Center(child: Text('Addictions list is empty'));
+              return ListView(
+                children: <Widget>[
+                  ...snapshot.data.documents.map((DocumentSnapshot document) {
+                    return GestureDetector(
                         child: ListTile(
-                          title: Text('Sugar'),
-                          leading: Icon(Icons.cake),
-                          // NOTE: delete sugar.jpg if next comment line is removed
-                          // leading: CircleAvatar(child: Image.asset('assets/sugar.jpg')),
+                          title: Text(document['name']),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, AddictionScreen.routeName,
-                            arguments: AddictionScreenArguments(
-                                addictionId: 'Avoidance and Escapism')),
-                        child: ListTile(
-                          title: Text('Avoidance and Escapism'),
-                          leading: Icon(Icons.directions),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, AddictionScreen.routeName,
-                            arguments: AddictionScreenArguments(
-                                addictionId: 'Useless Information')),
-                        child: ListTile(
-                          title: Text('Useless Information'),
-                          leading: Icon(Icons.not_interested),
-                        ),
-                      ),
-                    ],
-                  );
-              }
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AddictionScreen.routeName,
+                              arguments: AddictionScreenArguments(
+                                  addictionId: document['name']));
+                        });
+                  }).toList(),
+                ],
+              );
             },
           );
         });
