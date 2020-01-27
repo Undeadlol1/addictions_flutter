@@ -77,7 +77,7 @@ class CreateAddictionFormState extends State<CreateAddictionForm> {
                           Navigator.pushNamed(
                               context, AddictionScreen.routeName,
                               arguments: AddictionScreenArguments(
-                                  addictionId: nameController.text));
+                                  addictionName: nameController.text));
                         });
                       }
                     },
