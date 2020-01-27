@@ -60,6 +60,7 @@ class AddictionsList extends StatelessWidget {
                               Navigator.pushNamed(
                                   context, AddictionScreen.routeName,
                                   arguments: AddictionScreenArguments(
+                                      addictionId: document.documentID,
                                       addictionName: document['name']));
                             });
                       }).toList(),

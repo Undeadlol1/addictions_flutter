@@ -3,31 +3,31 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class CreateAddictionScreen extends StatelessWidget {
-  static const routeName = '/create-addiction';
+class CreateTriggerScreen extends StatelessWidget {
+  static const routeName = '/create-trigger';
 
-  const CreateAddictionScreen({Key key}) : super(key: key);
+  const CreateTriggerScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Your Addiction'),
+        title: Text('Add Your Trigger'),
       ),
-      body: CreateAddictionForm(),
+      body: CreateTriggerForm(),
     );
   }
 }
 
 // Create a Form widget.
-class CreateAddictionForm extends StatefulWidget {
+class CreateTriggerForm extends StatefulWidget {
   @override
-  CreateAddictionFormState createState() {
-    return CreateAddictionFormState();
+  CreateTriggerFormState createState() {
+    return CreateTriggerFormState();
   }
 }
 
-class CreateAddictionFormState extends State<CreateAddictionForm> {
+class CreateTriggerFormState extends State<CreateTriggerForm> {
   final _formKey = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
   final nameController = TextEditingController();
@@ -47,7 +47,7 @@ class CreateAddictionFormState extends State<CreateAddictionForm> {
                   children: <Widget>[
                     TextFormField(
                       controller: nameController,
-                      decoration: InputDecoration(labelText: 'Addiction Name'),
+                      decoration: InputDecoration(labelText: 'Trigger Name'),
                       validator: (value) {
                         if (value.trim().isEmpty) {
                           return 'Please enter some text';
@@ -60,6 +60,9 @@ class CreateAddictionFormState extends State<CreateAddictionForm> {
                       child: Center(
                           child: RaisedButton(
                         onPressed: () {
+                          final CreateTriggerScreenArguments args =
+                              ModalRoute.of(context).settings.arguments;
+
                           if (!snapshot.hasData) {
                             Scaffold.of(context).showSnackBar(
                                 SnackBar(content: Text('Please login')));
@@ -68,19 +71,20 @@ class CreateAddictionFormState extends State<CreateAddictionForm> {
                           if (_formKey.currentState.validate()) {
                             final Map<String, dynamic> payload = {
                               'name': nameController.text,
+                              'addictionId': args.addictionId,
                               'userId': (snapshot.data as FirebaseUser).uid
                             };
-                            print('$payload');
                             Firestore.instance
-                                .collection('addictions')
-                                // TODO manually add an id
+                                .collection('triggers')
                                 .add(payload)
                                 .then((document) {
                               Navigator.pushNamed(
                                   context, AddictionScreen.routeName,
                                   arguments: AddictionScreenArguments(
-                                      addictionId: document.documentID,
-                                      addictionName: nameController.text));
+                                    addictionId: args.addictionId,
+                                    // TODO fix addictionName argument
+                                    // NOTE make addiction screen document fetching so addictionName will be unnecessary
+                                  ));
                             });
                           }
                         },
@@ -92,4 +96,10 @@ class CreateAddictionFormState extends State<CreateAddictionForm> {
               ));
         });
   }
+}
+
+class CreateTriggerScreenArguments {
+  final String addictionId;
+
+  CreateTriggerScreenArguments({this.addictionId});
 }

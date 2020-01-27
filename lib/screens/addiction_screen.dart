@@ -1,3 +1,4 @@
+import 'package:addictions_flutter/screens/create_trigger_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
@@ -60,7 +61,9 @@ class AddictionScreen extends StatelessWidget {
             backgroundColor: Colors.red,
             label: 'Trigger',
             labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => print('THIRD CHILD'),
+            onTap: () => Navigator.pushNamed(
+                context, CreateTriggerScreen.routeName,
+                arguments: CreateTriggerScreenArguments()),
           ),
         ],
       ),
@@ -69,7 +72,8 @@ class AddictionScreen extends StatelessWidget {
 }
 
 class AddictionScreenArguments {
+  final String addictionId;
   final String addictionName;
 
-  AddictionScreenArguments({this.addictionName});
+  AddictionScreenArguments({this.addictionName, this.addictionId});
 }
