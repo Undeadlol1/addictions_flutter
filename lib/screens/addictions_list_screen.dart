@@ -33,39 +33,41 @@ class AddictionsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
         stream: _auth.onAuthStateChanged,
-        builder: (context, snapshot) {
-          final FirebaseUser user = snapshot.data;
-          return StreamBuilder<QuerySnapshot>(
-            stream: Firestore.instance
-                .collection('addictions')
-                .where("userId", isEqualTo: user?.uid)
-                .snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError)
-                return new Text('Error: ${snapshot.error}');
-              if (snapshot.connectionState == ConnectionState.waiting)
-                return Center(child: CircularProgressIndicator());
-              if (!snapshot.hasData)
-                return Center(child: Text('Addictions list is empty'));
-              return ListView(
-                children: <Widget>[
-                  ...snapshot.data.documents.map((DocumentSnapshot document) {
-                    return GestureDetector(
-                        child: ListTile(
-                          title: Text(document['name']),
-                        ),
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, AddictionScreen.routeName,
-                              arguments: AddictionScreenArguments(
-                                  addictionId: document['name']));
-                        });
-                  }).toList(),
-                ],
-              );
-            },
-          );
+        builder: (context, userSnapshot) {
+          if (userSnapshot.hasData)
+            return StreamBuilder<QuerySnapshot>(
+                stream: Firestore.instance
+                    .collection('addictions')
+                    .where("userId", isEqualTo: userSnapshot.data.uid)
+                    .snapshots(),
+                builder:
+                    (context, AsyncSnapshot<QuerySnapshot> addictionsSnapshot) {
+                  if (addictionsSnapshot.hasError)
+                    return new Text('Error: ${addictionsSnapshot.error}');
+                  if (addictionsSnapshot.connectionState ==
+                      ConnectionState.waiting)
+                    return Center(child: CircularProgressIndicator());
+                  return ListView(
+                    children: <Widget>[
+                      ...addictionsSnapshot.data.documents
+                          .map((DocumentSnapshot document) {
+                        print('${document.data}');
+                        return GestureDetector(
+                            child: ListTile(
+                              title: Text(document['name']),
+                            ),
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, AddictionScreen.routeName,
+                                  arguments: AddictionScreenArguments(
+                                      addictionName: document['name']));
+                            });
+                      }).toList(),
+                    ],
+                  );
+                });
+          else
+            return Center(child: Text('Addictions list is empty'));
         });
   }
 }
