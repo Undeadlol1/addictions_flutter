@@ -1,4 +1,4 @@
-import 'package:addictions_flutter/screens/addiction_screen.dart';
+import 'package:addictions_flutter/screens/addction_screen/addiction_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:addictions_flutter/screens/create_addiction_screen.dart';
 import 'package:addictions_flutter/widgets/drawer.dart';

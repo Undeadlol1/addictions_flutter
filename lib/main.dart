@@ -1,4 +1,4 @@
-import 'package:addictions_flutter/screens/addiction_screen.dart';
+import 'package:addictions_flutter/screens/addction_screen/addiction_screen.dart';
 import 'package:addictions_flutter/screens/addictions_list_screen.dart';
 import 'package:addictions_flutter/screens/create_addiction_screen.dart';
 import 'package:addictions_flutter/screens/create_trigger_screen.dart';
