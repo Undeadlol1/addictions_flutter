@@ -1,3 +1,4 @@
+import 'package:addictions_flutter/screens/addction_screen/widgets/triggers_list.dart';
 import 'package:addictions_flutter/screens/create_trigger_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -15,13 +16,15 @@ class AddictionScreen extends StatelessWidget {
         ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(title: Text('${args.addictionName}')),
-      body: ListView(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           ListTile(leading: Icon(Icons.mood_bad), title: Text('Consequences')),
           ListTile(title: Text('Fat')),
           ListTile(title: Text('Pimples')),
           Divider(),
           ListTile(leading: Icon(Icons.warning), title: Text('Triggers')),
+          TriggersList(addictionId: args.addictionId),
           ListTile(title: Text('Tea')),
           Divider(),
           ListTile(leading: Icon(Icons.mood), title: Text('Alternatives')),
