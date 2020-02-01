@@ -53,7 +53,8 @@ class AddictionScreen extends StatelessWidget {
             labelStyle: TextStyle(fontSize: 18.0),
             onTap: () => Navigator.pushNamed(
                 context, CreateAlternativeScreen.routeName,
-                arguments: CreateAlternativeScreenArguments()),
+                arguments: CreateAlternativeScreenArguments(
+                    addictionId: args.addictionId)),
           ),
           SpeedDialChild(
             child: Icon(Icons.mood_bad),
@@ -69,7 +70,8 @@ class AddictionScreen extends StatelessWidget {
             labelStyle: TextStyle(fontSize: 18.0),
             onTap: () => Navigator.pushNamed(
                 context, CreateTriggerScreen.routeName,
-                arguments: CreateTriggerScreenArguments()),
+                arguments: CreateTriggerScreenArguments(
+                    addictionId: args.addictionId)),
           ),
         ],
       ),
