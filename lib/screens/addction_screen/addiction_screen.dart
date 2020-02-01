@@ -1,5 +1,6 @@
 import 'package:addictions_flutter/screens/addction_screen/widgets/alternatives_list.dart';
 import 'package:addictions_flutter/screens/addction_screen/widgets/triggers_list.dart';
+import 'package:addictions_flutter/screens/create_alternative_screen.dart';
 import 'package:addictions_flutter/screens/create_trigger_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -39,10 +40,9 @@ class AddictionScreen extends StatelessWidget {
         // by tapping main button and overlay is not rendered.
         closeManually: false,
         curve: Curves.bounceIn,
-        // overlayColor: Colors.black,
-        // overlayOpacity: 0.5,
         onOpen: () => print('OPENING DIAL'),
         onClose: () => print('DIAL CLOSED'),
+        // TODO
         tooltip: 'Speed Dial',
         heroTag: 'speed-dial-hero-tag',
         children: [
@@ -51,7 +51,9 @@ class AddictionScreen extends StatelessWidget {
             backgroundColor: Colors.blue,
             label: 'Alternative',
             labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => print('FIRST CHILD'),
+            onTap: () => Navigator.pushNamed(
+                context, CreateAlternativeScreen.routeName,
+                arguments: CreateAlternativeScreenArguments()),
           ),
           SpeedDialChild(
             child: Icon(Icons.mood_bad),

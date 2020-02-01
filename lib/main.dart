@@ -1,6 +1,7 @@
 import 'package:addictions_flutter/screens/addction_screen/addiction_screen.dart';
 import 'package:addictions_flutter/screens/addictions_list_screen.dart';
 import 'package:addictions_flutter/screens/create_addiction_screen.dart';
+import 'package:addictions_flutter/screens/create_alternative_screen.dart';
 import 'package:addictions_flutter/screens/create_trigger_screen.dart';
 import 'package:addictions_flutter/screens/sign_in_screen.dart';
 import 'package:addictions_flutter/screens/triggers_list_screen.dart';
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
         '/triggers': (context) => TriggesListScreen(),
         CreateAddictionScreen.routeName: (context) => CreateAddictionScreen(),
         CreateTriggerScreen.routeName: (context) => CreateTriggerScreen(),
+        CreateAlternativeScreen.routeName: (context) =>
+            CreateAlternativeScreen(),
         AddictionScreen.routeName: (context) => AddictionScreen(),
         SignInScreen.routeName: (context) => SignInScreen(),
       },
