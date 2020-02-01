@@ -1,4 +1,5 @@
 import 'package:addictions_flutter/screens/addction_screen/widgets/alternatives_list.dart';
+import 'package:addictions_flutter/screens/addction_screen/widgets/consequences_list.dart';
 import 'package:addictions_flutter/screens/addction_screen/widgets/triggers_list.dart';
 import 'package:addictions_flutter/screens/create_alternative_screen.dart';
 import 'package:addictions_flutter/screens/create_trigger_screen.dart';
@@ -22,8 +23,7 @@ class AddictionScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           ListTile(leading: Icon(Icons.mood_bad), title: Text('Consequences')),
-          ListTile(title: Text('Fat')),
-          ListTile(title: Text('Pimples')),
+          ConsequencesList(addictionId: args.addictionId),
           Divider(),
           ListTile(leading: Icon(Icons.warning), title: Text('Triggers')),
           TriggersList(addictionId: args.addictionId),
