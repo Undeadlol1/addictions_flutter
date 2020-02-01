@@ -6,9 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TriggersList extends StatelessWidget {
-  final String addictionId;
   TriggersList({Key key, this.addictionId}) : super(key: key);
 
+  final String addictionId;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
@@ -17,7 +17,6 @@ class TriggersList extends StatelessWidget {
       child: StreamBuilder(
           stream: _auth.onAuthStateChanged,
           builder: (context, userSnapshot) {
-            print('${this.addictionId}');
             if (userSnapshot.hasData)
               return StreamBuilder<QuerySnapshot>(
                   stream: Firestore.instance
@@ -52,7 +51,6 @@ class TriggersList extends StatelessWidget {
                         ],
                       );
                     } else {
-                      print('no items');
                       return ListView(children: <Widget>[
                         ListTile(
                             title: Text('Triggers list is empty',
