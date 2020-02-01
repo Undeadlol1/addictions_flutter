@@ -23,14 +23,17 @@ class AddictionScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          ListTile(leading: Icon(Icons.mood_bad), title: Text('Consequences')),
-          ConsequencesList(addictionId: args.addictionId),
+          ListTile(leading: Icon(Icons.mood), title: Text('Alternatives')),
+          Divider(),
+          AlternativesList(addictionId: args.addictionId),
           Divider(),
           ListTile(leading: Icon(Icons.warning), title: Text('Triggers')),
+          Divider(),
           TriggersList(addictionId: args.addictionId),
           Divider(),
-          ListTile(leading: Icon(Icons.mood), title: Text('Alternatives')),
-          AlternativesList(addictionId: args.addictionId)
+          ListTile(leading: Icon(Icons.mood_bad), title: Text('Consequences')),
+          Divider(),
+          ConsequencesList(addictionId: args.addictionId),
         ],
       ),
       floatingActionButton: SpeedDial(
