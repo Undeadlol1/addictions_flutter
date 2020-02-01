@@ -25,7 +25,6 @@ class AddictionScreen extends StatelessWidget {
           Divider(),
           ListTile(leading: Icon(Icons.warning), title: Text('Triggers')),
           TriggersList(addictionId: args.addictionId),
-          ListTile(title: Text('Tea')),
           Divider(),
           ListTile(leading: Icon(Icons.mood), title: Text('Alternatives')),
         ],

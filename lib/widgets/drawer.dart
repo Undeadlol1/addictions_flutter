@@ -36,10 +36,6 @@ class AppDrawer extends StatelessWidget {
                   onTap: () => Navigator.pushNamed(context, '/'),
                 ),
                 ListTile(
-                  title: Text('Triggers'),
-                  onTap: () => Navigator.pushNamed(context, '/triggers'),
-                ),
-                ListTile(
                     title: Text(snapshot.hasData ? 'Sign Out' : 'Sign In'),
                     onTap: () {
                       if (snapshot.hasData)
