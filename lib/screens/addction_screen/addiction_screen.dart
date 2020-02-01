@@ -18,20 +18,36 @@ class AddictionScreen extends StatelessWidget {
     // them as ScreenArguments.
     final AddictionScreenArguments args =
         ModalRoute.of(context).settings.arguments;
+    const boldText = TextStyle(fontWeight: FontWeight.bold, fontSize: 19);
     return Scaffold(
       appBar: AppBar(title: Text('${args.addictionName}')),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          ListTile(leading: Icon(Icons.mood), title: Text('Alternatives')),
+          ListTile(
+              leading: Icon(Icons.mood),
+              title: Text(
+                'Alternatives',
+                style: boldText,
+              )),
           Divider(),
           AlternativesList(addictionId: args.addictionId),
           Divider(),
-          ListTile(leading: Icon(Icons.warning), title: Text('Triggers')),
+          ListTile(
+              leading: Icon(Icons.warning),
+              title: Text(
+                'Triggers',
+                style: boldText,
+              )),
           Divider(),
           TriggersList(addictionId: args.addictionId),
           Divider(),
-          ListTile(leading: Icon(Icons.mood_bad), title: Text('Consequences')),
+          ListTile(
+              leading: Icon(Icons.mood_bad),
+              title: Text(
+                'Consequences',
+                style: boldText,
+              )),
           Divider(),
           ConsequencesList(addictionId: args.addictionId),
         ],
