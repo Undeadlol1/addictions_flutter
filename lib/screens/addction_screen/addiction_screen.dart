@@ -1,3 +1,4 @@
+import 'package:addictions_flutter/screens/addction_screen/widgets/alternatives_list.dart';
 import 'package:addictions_flutter/screens/addction_screen/widgets/triggers_list.dart';
 import 'package:addictions_flutter/screens/create_trigger_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class AddictionScreen extends StatelessWidget {
           TriggersList(addictionId: args.addictionId),
           Divider(),
           ListTile(leading: Icon(Icons.mood), title: Text('Alternatives')),
+          AlternativesList(addictionId: args.addictionId)
         ],
       ),
       floatingActionButton: SpeedDial(
