@@ -2,6 +2,7 @@ import 'package:addictions_flutter/screens/addction_screen/widgets/alternatives_
 import 'package:addictions_flutter/screens/addction_screen/widgets/consequences_list.dart';
 import 'package:addictions_flutter/screens/addction_screen/widgets/triggers_list.dart';
 import 'package:addictions_flutter/screens/create_alternative_screen.dart';
+import 'package:addictions_flutter/screens/create_consequence_screen.dart';
 import 'package:addictions_flutter/screens/create_trigger_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -61,7 +62,10 @@ class AddictionScreen extends StatelessWidget {
             backgroundColor: Colors.deepPurpleAccent,
             label: 'Consequence',
             labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => print('SECOND CHILD'),
+            onTap: () => Navigator.pushNamed(
+                context, CreateConsequenceScreen.routeName,
+                arguments: CreateConsequenceScreenArguments(
+                    addictionId: args.addictionId)),
           ),
           SpeedDialChild(
             child: Icon(Icons.warning),
