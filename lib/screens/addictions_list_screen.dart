@@ -11,9 +11,7 @@ class AddictionsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Addictions'),
-      ),
+      appBar: AppBar(title: Text('Addictions')),
       drawer: AppDrawer(),
       body: AddictionsList(),
       floatingActionButton: FloatingActionButton(
@@ -51,10 +49,12 @@ class AddictionsList extends StatelessWidget {
                     children: <Widget>[
                       ...addictionsSnapshot.data.documents
                           .map((DocumentSnapshot document) {
-                        print('${document.data}');
                         return GestureDetector(
                             child: ListTile(
-                              title: Text(document['name']),
+                              title: Text(
+                                document['name'],
+                                style: TextStyle(fontSize: 24),
+                              ),
                             ),
                             onTap: () {
                               Navigator.pushNamed(
